@@ -136,8 +136,7 @@ class Sim:
     
     def handle_mouse_up(self):
         if self.adjust_mode:
-            self.adjust_mode = 0
-            self.th1d, self.th2d, self.step = 0, 0, 0
+            self.th1d, self.th2d, self.step, self.adjust_mode = 0, 0, 0, 0
 
 class Trace:
     def __init__(self):
