@@ -33,7 +33,6 @@ class Sim:
         self.main()
     
     def setup(self):
-        self.th1prev, self.th2prev, self.th1dprev, self.th2dprev = None, None, None, None
         self.step = 0
         self.trace.screen.fill(BLACK)
 
@@ -136,8 +135,8 @@ class Sim:
             self.th2 = np.arctan2(y1 - mouse_y, mouse_x - x1) + np.pi/2
     
     def handle_mouse_up(self):
-        if not self.adjust_mode:
-            self.adjust_mode = None
+        if self.adjust_mode:
+            self.adjust_mode = 0
             self.th1d, self.th2d, self.step = 0, 0, 0
 
 class Trace:
