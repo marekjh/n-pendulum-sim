@@ -26,7 +26,7 @@ class Sim:
         self.th1, self.th2, self.th1d, self.th2d, self.g, self.m1, self.m2, self.l1, self.l2 = args
         self.time_scale = 1
         self.paused = True
-        self.adjust_mode = None
+        self.adjust_mode = 0
         self.bg = WHITE
 
         self.setup()
@@ -92,7 +92,7 @@ class Sim:
 
         if self.trace.on and self.step > 0:
             x2prev, y2prev = self.get_cartesian(self.th1prev, self.th2prev)[2:]
-            if self.adjust_mode is None:
+            if not self.adjust_mode:
                 self.trace.update(x2, y2, x2prev, y2prev)
             self.trace.draw(self.screen)
 
@@ -119,24 +119,24 @@ class Sim:
                 self.paused = True
                 self.trace.screen.fill(BLACK)
                 if i == 0: 
-                    self.adjust_mode = "1"
+                    self.adjust_mode = 1
                 else:
-                    self.adjust_mode = "2"
+                    self.adjust_mode = 2
     
     def handle_mouse_drag(self, mousepos):
         mouse_x, mouse_y = mousepos
         mouse_x -= SIZE/2
         mouse_y -= SIZE/2
-        if self.adjust_mode == "1":
+        if self.adjust_mode == 1:
             self.th1 = np.arctan2(-mouse_y, mouse_x) + np.pi/2
-        elif self.adjust_mode == "2":
+        elif self.adjust_mode == 2:
             x1, y1 = self.get_cartesian(self.th1, self.th2)[:2]
             x1 -= SIZE/2
             y1 -= SIZE/2
             self.th2 = np.arctan2(y1 - mouse_y, mouse_x - x1) + np.pi/2
     
     def handle_mouse_up(self):
-        if self.adjust_mode is not None:
+        if not self.adjust_mode:
             self.adjust_mode = None
             self.th1d, self.th2d, self.step = 0, 0, 0
 
