@@ -101,7 +101,6 @@ class Sim:
         self.mass2.rect.centerx, self.mass2.rect.centery = x2, y2
         self.mass1.draw(self.screen)
         self.mass2.draw(self.screen)
-        pygame.draw.circle(self.screen, RED, (x2, y2), 10)
         
 
     def handle_keyboard(self, key):
