@@ -133,12 +133,15 @@ class Sim:
     def handle_mouse_drag(self, mousepos):
         if self.adjust_mode:
             x, y = self.get_cartesian(self.theta)
-            mouse_x, mouse_y = mousepos
             x -= SIZE/2
             y -= SIZE/2
+            mouse_x, mouse_y = mousepos
             mouse_x -= SIZE/2
             mouse_y -= SIZE/2
-            self.theta[self.adjust_mode-1] = np.arctan2(np.sum(y[:self.adjust_mode-1]) - mouse_y, mouse_x - np.sum(x[:self.adjust_mode-1])) + np.pi/2
+            if self.adjust_mode == 1:
+                self.theta[0] = np.arctan2(-mouse_y, mouse_x) + np.pi/2
+            else:
+                self.theta[self.adjust_mode-1] = np.arctan2(y[self.adjust_mode-2] - mouse_y, mouse_x - x[self.adjust_mode-2]) + np.pi/2
 
     
     def handle_mouse_up(self):
