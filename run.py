@@ -23,14 +23,11 @@ class Sim:
         self.time_scale = 1
         self.paused = True
         self.adjust_mode = 0
+        self.step = 0
         self.bg = WHITE
 
         self.setup()
         self.main()
-    
-    def setup(self):
-        self.step = 0
-        self.trace.screen.fill(BLACK)
 
     def main(self):
         pygame.init()
