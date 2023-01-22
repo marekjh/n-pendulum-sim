@@ -19,7 +19,7 @@ class Sim:
         self.screen = pygame.display.set_mode((SIZE, SIZE))
         self.trace = Trace()
         self.mass = [Mass(1, RED, 15) for _ in range(N)]
-        self.theta, self.thetad, self.g, self.l = kwargs.values()
+        self.theta, self.thetad, self.l, self.g = kwargs.values()
         self.time_scale = 1
         self.paused = True
         self.adjust_mode = 0
@@ -176,4 +176,4 @@ class Mass(pygame.sprite.Sprite):
 
 
 if __name__ == "__main__":
-    Sim(theta=np.ones(N)*np.pi/2, thetad=np.zeros(N)*np.pi/2, g=9.81, l=np.ones(N)) 
+    Sim(theta=np.ones(N)*np.pi/2, thetad=np.zeros(N), l=np.ones(N), g=9.81) 
