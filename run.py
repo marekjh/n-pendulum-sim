@@ -108,7 +108,7 @@ class Sim:
 
         pygame.draw.line(self.screen, BLACK, (SIZE/2, SIZE/2), (x[0], y[0]), 5)
         for i in range(1, N):
-                pygame.draw.line(self.screen, BLACK, (x[i-1], y[i-1]), (x[i], y[i]), 5)
+            pygame.draw.line(self.screen, BLACK, (x[i-1], y[i-1]), (x[i], y[i]), 5)
 
         for i in range(N):
             self.mass[i].rect.centerx, self.mass[i].rect.centery = x[i], y[i]
