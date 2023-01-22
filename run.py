@@ -26,7 +26,6 @@ class Sim:
         self.step = 0
         self.bg = WHITE
 
-        self.setup()
         self.main()
 
     def main(self):
